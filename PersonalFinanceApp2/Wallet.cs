@@ -21,7 +21,7 @@ namespace PersonalFinanceApp2
         [Required]
         public string Currency { get; set; }
 
-
+        
         public decimal InitialBalance { get; set; }
 
 
@@ -68,7 +68,7 @@ namespace PersonalFinanceApp2
             }
             catch(ArgumentNullException) 
             {
-                Console.WriteLine($"в кошельке {Name} транзакций не было");
+                
             }
 
         }

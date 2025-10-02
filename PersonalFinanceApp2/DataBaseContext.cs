@@ -11,8 +11,7 @@ namespace PersonalFinanceApp2
     {
         public DbSet<Wallet> Wallets => Set<Wallet>() ;
         public DbSet<Transaction> Transactions => Set<Transaction>();
-        public DbSet<User> Users => Set<User>();
-
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Data Source=PersonalFinance.db");
@@ -34,6 +33,10 @@ namespace PersonalFinanceApp2
             modelBuilder.Entity<Transaction>()
                 .Property(t => t.Amount)
                 .HasPrecision(18, 2);
+
+            modelBuilder.Entity<Transaction>()
+                .Property(t => t.Type)
+                .HasConversion<string>();
         }
     }
 }

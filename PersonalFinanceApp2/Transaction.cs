@@ -10,8 +10,10 @@ namespace PersonalFinanceApp2
 {
     public enum TransactionType
     {
-        Income,  
-        Expense  
+        Income, 
+        Expense
+        
+          
     }
 
 
