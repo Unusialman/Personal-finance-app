@@ -3,6 +3,12 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Database
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+
 # User-specific files
 *.rsuser
 *.suo
