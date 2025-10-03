@@ -19,7 +19,7 @@ namespace PersonalFinanceApp2
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+            //1 кошелек и много транзакций
             modelBuilder.Entity<Wallet>()
                 .HasMany(w => w.Transactions)
                 .WithOne(t => t.Wallet)

@@ -12,7 +12,6 @@ namespace PersonalFinanceApp2
             using (DataBaseContext db = new DataBaseContext())
             {
                 int input;
-
                 do
                 {
                     Console.WriteLine(@"
@@ -34,7 +33,6 @@ namespace PersonalFinanceApp2
                                 {
                                     ShowTopExpenses(db);
                                     break;
-
                                 }
                             case 3:
                                 {
@@ -46,7 +44,6 @@ namespace PersonalFinanceApp2
                                     Console.WriteLine("введите номер одного из предложенных вариантов");
                                     break;
                                 }
-
                         }
                     }
                     catch (FormatException)
@@ -59,7 +56,9 @@ namespace PersonalFinanceApp2
 
             }
         }
-        private static void ShowMonthlyTransactions(DataBaseContext db)
+
+        //функция вывода всех транзакций за месяц
+        static void ShowMonthlyTransactions(DataBaseContext db)
         {
             try
             {
@@ -72,6 +71,7 @@ namespace PersonalFinanceApp2
                 List<Transaction> Transactions = db.Transactions.ToList();
                 List<Wallet> wallets = db.Wallets.ToList();
 
+                //получение транзакций за месяц, группировка по типу, сортировка во сумме
                 var transactions = Transactions.Where(t => t.Date.Year == Year && t.Date.Month == Month)
                     .GroupBy(t => t.Type).OrderByDescending(g => g.Sum(t => t.Amount)).ToList();
 
@@ -103,7 +103,9 @@ namespace PersonalFinanceApp2
                 
             }
         }
-        private static void ShowTopExpenses(DataBaseContext db)
+
+        //самые большие траты за месяц в каждом кошельке
+        static void ShowTopExpenses(DataBaseContext db)
         {
             try
             {
@@ -122,7 +124,8 @@ namespace PersonalFinanceApp2
 
                 foreach (Wallet wallet in wallets)
                 {
-                    transactionsMounth = wallet.Transactions.Where(t => t.Date.Year == Year && t.Date.Month == Month && t.Type == TransactionType.Expense).OrderByDescending(t => t.Amount).Take(3).ToList();
+                    transactionsMounth = wallet.Transactions.Where(t => t.Date.Year == Year && t.Date.Month == Month && t.Type == TransactionType.Expense)
+                        .OrderByDescending(t => t.Amount).Take(3).ToList(); //получение 3 самых больших трат кошелька
                     if (transactionsMounth.Count > 0)
                     {
                         foreach (Transaction transaction in transactionsMounth)
