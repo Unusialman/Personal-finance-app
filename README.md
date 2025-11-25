@@ -1,2 +1,1 @@
-для корректной работы программы необходимо переместить файл с бд PersonalFinance.db в PersonalFinanceApp2\bin\Debug\net8.0
-для корректной работы тестов необходимо переместить файл с бд PersonalFinance.db в PersonalFinanceApp2.Tests\bin\Debug\net8.0
+Консольное .NET приложение для учета личных финансов.
