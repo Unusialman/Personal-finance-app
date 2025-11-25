@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,19 @@ namespace PersonalFinanceApp2
 {
     public class DataBaseContext : DbContext
     {
+        public DataBaseContext() 
+        {
+            try
+            {
+                var databaseCreator = (Database.GetService<IDatabaseCreator>() as RelationalDatabaseCreator);
+                if (databaseCreator != null)
+                    databaseCreator.CreateTables();
+            }
+            catch (Microsoft.Data.Sqlite.SqliteException)
+            {
+                //игнор "ошибки" если файл бд уже создан
+            }
+        }   
         public DbSet<Wallet> Wallets => Set<Wallet>() ;
         public DbSet<Transaction> Transactions => Set<Transaction>();
         

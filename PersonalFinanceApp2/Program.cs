@@ -65,8 +65,16 @@ namespace PersonalFinanceApp2
 
                 Console.WriteLine("\nВведите год: ");
                 int Year = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("\nВведите месяц: ");
-                int Month = Convert.ToInt32(Console.ReadLine());
+                int Month;
+                do
+                {
+                    Console.WriteLine("\nВведите месяц: ");
+                    Month = Convert.ToInt32(Console.ReadLine());
+                    if (Month < 0 || Month > 13)
+                    {
+                        Console.WriteLine("такого месяца не существует");
+                    }
+                } while (Month < 0 || Month > 13);
 
                 List<Transaction> Transactions = db.Transactions.ToList();
                 List<Wallet> wallets = db.Wallets.ToList();
@@ -112,8 +120,16 @@ namespace PersonalFinanceApp2
 
                 Console.WriteLine("\nВведите год: ");
                 int Year = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("\nВведите месяц: ");
-                int Month = Convert.ToInt32(Console.ReadLine());
+                int Month;
+                do
+                {
+                    Console.WriteLine("\nВведите месяц: ");
+                    Month = Convert.ToInt32(Console.ReadLine());
+                    if (Month < 0 || Month > 13)
+                    {
+                        Console.WriteLine("такого месяца не существует");
+                    }
+                } while (Month < 0 || Month > 13);
 
                 List<Wallet> wallets = db.Wallets.ToList();
                 List<Transaction> transactionsMounth;
